@@ -60,19 +60,15 @@
 @page chapter{
   @bottom-center {
     content: counter(page);
-
     margin: 0 0 0 0;
     background-color: #ffffff;
-    background-image: url(footer_picto.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    background-image: none;
   }
 }
 
 /* Nouvelle page de chapitre */
 @page chapter:first {
-  background-image: url(chemin_chapter_tiret.png);
+  background-image: url(numero_capitulo.png);
   background-position: top 3cm left;
   background-size: contain;
   background-repeat: no-repeat;
@@ -91,7 +87,7 @@ h1 {
   margin-left: 2cm;
   margin-right: 2cm;
   text-align: center;
-
+  margin-bottom: 2cm;
 }
 
 /* mais en ajoutant une exception pour le titre */
@@ -105,6 +101,7 @@ h1.title {
   text-align: left;
   margin-right: -1.2cm;
   font-size: 30pt;
+  display: none;
 }
 
 /* On force le saut de page avant le bloc subtitle/auteur/date */
@@ -122,7 +119,7 @@ h1.title {
   position: absolute;
   bottom: 1cm;
   left: 10cm;
-  font-size: 18pt;
+  font-size: 14pt;
 }
 
 .date {
@@ -133,23 +130,23 @@ h1.title {
 }
 
 /* Page de garde */
-@page :first{
+@page :first {
   margin: 0 0 0 0;
   background-color: #ffffff;
-  background-image: url(picto_blanc.png), url(logo_bleu.png), url(page_avant_bleu.png);
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: center, top, center;
-  background-size: 70%, 50%, contain;
+  background-image: url(portada.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 /* Derniere page */
 .pagedjs_page:last-of-type {
   margin: 0 0 0 0;
   background-color: #ffffff;
-  background-image: url(page_arriere_bleu.png);
+  background-image: url(contraportada.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
 }
 
 
@@ -191,8 +188,7 @@ img {
 /* verbatim */
 blockquote {
   break-inside: avoid;
-  border-style: dashed none;
-  border-color: #003a5d;
+  border-style: none;
   margin-left: 2cm;
   margin-right: 2cm;
   margin-block-start: 1cm !important;
@@ -204,8 +200,9 @@ blockquote > h1{
 
 /* pour le saut de page final qui n'a pas a a voir lieu */
 html, body {
-  border: 1px solid white;
-  height: 99%;
+  border: none;
+  height: 100%;
   page-break-after: avoid;
   page-break-before: avoid;
+  color: #2a2a2a;
 }

@@ -1,16 +1,16 @@
 
 /* paragaphe et liste */
 p, ul {
-  color: #003a5d;
-  font-family: "Sarabun";
+  color: #2a2a2a;
+  font-family: "Barlow";
   text-align: justify;
 }
 
 /* titres */
 h1, h2, h3, h4 {
-  color: #003a5d;
-  font-family: "Caveat Brush";
-  font-weight: bold;
+  color: #2a2a2a;
+  font-family: "Barlow";
+  font-weight: 800;
 }
 
 h1 {
@@ -20,23 +20,23 @@ h1 {
 /* tableaux - avec gt */
 /* titres */
 th {
-  background-color: #003a5d !important;
+  background-color: #2a2a2a !important;
   color: #ffffff !important;
-  font-family: "Sarabun" !important;
-  font-weight: bold !important;
+  font-family: "Barlow" !important;
+  font-weight: 800 !important;
 }
 
 /* colonnes de group */
 .gt_group_heading {
-  color: #003a5d !important;
-  font-family: "Sarabun" !important;
-  font-weight: bold !important;
+  color: #2a2a2a !important;
+  font-family: "Barlow" !important;
+  font-weight: 800 !important;
 }
 
 /* contenu */
 td {
-  color: #003a5d;
-  font-family: "Sarabun";
+  color: #2a2a2a;
+  font-family: "Barlow";
 }
 
 /* eviter les tableaux multipages */
@@ -46,7 +46,7 @@ td {
 
 /* numerotation pages */
 .pagedjs_margin-content{
-  color: #003a5d;
-  font-family: "Sarabun";
-  font-weight: bold;
+  color: #2a2a2a;
+  font-family: "Barlow";
+  font-weight: 800;
 }
