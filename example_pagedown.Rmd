@@ -23,66 +23,14 @@ knitr::opts_chunk$set(
 ```{r packages}
 library(tidyverse)
 library(gt)
+
+library(ggmagic)
+
+red <- "#AC0810"
+
 ```
 
 
-```{r theme}
-theme_sgdf <- theme(
-  axis.title = element_text(
-    family = "Helvetica",
-    size = 12,
-    color = "#2a2a2a",
-    face = "bold"
-  ),
-  legend.title = element_text(
-    family = "Helvetica",
-    size = 12,
-    color = "#2a2a2a",
-    face = "bold"
-  ),
-  axis.text = element_text(
-    family = "Helvetica",
-    size = 12,
-    color = "#2a2a2a"
-  ),
-  legend.text = element_text(
-    family = "Helvetica",
-    size = 12,
-    color = "#2a2a2a"
-  ),
-  legend.position = "top",
-  strip.text = element_text(
-    family = "Helvetica",
-    size = 12,
-    color = "#2a2a2a"
-  ),
-  plot.title = element_text(
-    family = "Caveat Brush",
-    size = 20,
-    color = "#2a2a2a",
-    hjust = -0.15
-  ),
-  plot.subtitle = element_text(
-    family = "Caveat Brush",
-    size = 16,
-    color = "#2a2a2a",
-    hjust = -0.12
-  ),
-  plot.caption = element_text(
-    family = "Helvetica",
-    size = 10,
-    color = "#2a2a2a",
-    hjust = -0.12
-  )
-)
-
-
-# définir un scale
-vect_col4 <- c("#f93640", "#457b9d", "#1d3557", "#a8dadc")
-vect_col5 <- c("#f93640", "#457b9d", "#1d3557", "#a8dadc", "#2a2a2a")
-vect_col8 <- c("#f93640", "#457b9d", "#1d3557", "#a8dadc", "#2a2a2a", "#f4a698", "#c7efcf", "#ffe74c")
-```
- 
 > # Cómo conectar los datos de América Latina
 >
 > Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -119,7 +67,28 @@ El equipo de Interconexión realizó un mapeo y análisis de la información rec
 
 ## Organizaciones Encuestadas
 
-Listado orgs y perfiles
+```{r}
+d <- read_csv("data/1-alcance.csv")
+gg_bar_CatNum(d, colors = red)
+
+```
+
+El alcance de las organizaciones que participaron en la encuesta se puede categorizar en 5 ejes: 
+
+- Tecnología cívica
+- Datos Abiertos
+- Derechos Digitales
+- Periodismo de datos
+- Política Pública
+
+Las encuestas fueron contestadas tanto por personal directivo como operativo de las organizaciones, lo que brinda pistas sobre las diferentes percepciones en el panorama de uso, generación y publicación de los datos. Sin duda este es un campo que se sugiere explorar a mayor profundidad en futuras investigaciones sobre el tema. 
+
+A lo largo de la investigación se hizo énfasis por parte de las organizaciones en el valor de los datos y su impacto en la estructura de la organización, la mayoría de las organizaciones establecen los datos abiertos como su eje central, ya sea para investigaciones periodísticas o para proyectos de tecnología cívica. Los datos abiertos son la espina dorsal de la organización de acuerdo a la encuesta y casos de estudio realizados. 
+
+No obstante, algunas organizaciones mencionan a los datos no como un eje rector, pero sí como un elemento de especial relevancia dentro de la estructura y en el trabajo de la organización. Estas organizaciones mencionaron tener un área enfocada a datos abiertos, sin especificar las actividades que realizan en estas áreas. 
+
+
+
 
 ## Limitantes de la investigación
 
@@ -139,12 +108,10 @@ En cuanto a la experiencia de las organizaciones en el uso de datos, destacaron 
 
 Lo anterior nos lleva al Gráfico 1, donde se puede encontrar de manera más detallada las diferentes formas en las que las organizaciones participantes utilizan datos habitualmente, siendo las más destacadas consumo de bases de datos como archivos planos (csv, xlsx, json), transformación de datos públicos para hacerlos más útiles, generación de informes, tableros, visualizaciones para incidencia o toma de decisiones. Esto cobra un especial sentido si entendemos que las organizaciones obtienen datos que después transforman en información digerible y/o investigaciones periodísticas que presentar a sus audiencias. 
 
-```{r plot}
-iris %>% 
-  ggplot(aes(x = Sepal.Length)) +
-  geom_bar(fill = "#f93640") +
-  theme_minimal() +
-  theme_sgdf
+```{r}
+d <- read_csv("data/2-uso.csv")
+gg_bar_CatNum(d, colors = red, orientation ="hor", labelWrap = 30)
+
 ```
 
 
@@ -152,12 +119,10 @@ Entendiendo el uso que le dan las organizaciones a las diferentes bases de datos
 
 En relación a los datos que obtienen de otras comunidades u organizaciones de sociedad civil, fueron pocas las organizaciones que dijeron hacer uso constante (más de 5 veces) de datos de otras organizaciones, únicamente un 20.8% (Gráfico 2). La mayoría mencionó a lo largo de la encuesta nunca haber utilizado datos de otras organizaciones en sus proyectos (37.5%). 
 
-```{r plot2}
-iris %>% 
-  ggplot(aes(x = Sepal.Length)) +
-  geom_bar(fill = "#f93640") +
-  theme_minimal() +
-  theme_sgdf
+```{r}
+d <- read_csv("data/3-frec-uso.csv")
+gg_bar_CatNum(d, colors = red, labelWrap = 20)
+
 ```
 
 Algunas de las razones mencionadas por las organizaciones por las que no utilizan datos de otras organizaciones son: 
@@ -175,9 +140,11 @@ Varias organizaciones mencionaron que el trabajo que hacen en la generación de 
 Aquellos datos que sí se publican, ¿cómo son publicados?, ¿se utiliza algún estándar específico por parte de las organizaciones? Este tema se abordó de forma específica en la encuesta, solicitando a las organizaciones que mencionaran los estándares de datos abiertos con los que trabajan. Como se puede observar en el Gráfico 3, el 33.3% de las organizaciones nunca han usado un estándar para la publicación de datos abiertos. En cuanto a aquellas que sí utilizan alguno, el Open Data Contracting Standard (ODCS) y Popolo fueron los más mencionados. Adicionalmente, se mencionaron estándares como Akoma Ntoso, Beneficial Ownership Data Standard, entre otros. 
 
 
+```{r}
+d <- read_csv("data/4-estandares.csv")
+gg_bar_CatNum(d, colors = red)
 
-
-Gráfico 3
+```
 
 La organización Observatorio del Poder hizo particular énfasis en la falta de estándares tanto en el formato abierto de los datos, como en cuál es la información que por ley se debe compartir, así como la necesidad de homologar ambos aspectos a nivel regional para que sea posible compartir la información.
 
@@ -200,7 +167,11 @@ Uno de los desafíos mencionado en repetidas ocasiones a lo largo de la encuesta
 Adicional a la falta de estándares, se preguntó a las organizaciones cuáles eran las barreras más recurrentes a las que se enfrentaban a la hora de compartir datos, siendo la actualización y la verificabilidad las opciones que más se mencionaron en la encuesta después de la falta de formatos (Gráfico 4).  
 
 
-Gráfico 4
+```{r plot2}
+d <- read_csv("data/5-barreras.csv")
+gg_bar_CatNum(d, colors = red, orientation = "hor", labelWrap = 20)
+
+```
 
 En las entrevistas se habló en repetidas ocasiones de una falta de acceso a la información e incluso una falta de información en sí misma. La falta de estándares no sólo afecta la capacidad de generar y publicar información por parte de las organizaciones, también genera vacíos legales que las instituciones gubernamentales utilizan para obstaculizar el acceso a cierta información. 
 
